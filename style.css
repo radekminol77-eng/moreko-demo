@@ -1,0 +1,1128 @@
+:root {
+  --primary: #1e4d2b;
+  --primary-light: #2d6a3e;
+  --accent: #f97316;
+  --text-dark: #1f2937;
+  --bg-light: #f9fafb;
+  --white: #ffffff;
+  --transition: all 0.4s ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  color: var(--text-dark);
+  background-color: var(--bg-light);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  width: 100%; /* Musí být 100%, aby max-width mohl fungovat */
+}
+/* --- MODERNÍ PLOVOUCÍ NAVBAR --- */
+.navbar {
+  position: fixed;
+  top: 0; /* Fixní bod je nahoře */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+
+  /* Startovní stav - Kapsle */
+  width: 90%;
+  max-width: 1200px;
+  height: 70px; /* Výška bílé plochy */
+  margin-top: 20px; /* Tahle mezera se při animaci plynule smrskne */
+
+  background: #ffffff;
+  border-radius: 100px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+
+  /* Plynulá animace všech vlastností najednou */
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* STAV PŘI SCROLLU */
+.navbar.sticky-nav {
+  margin-top: 0; /* Plynule "přicucne" navbar k horní hraně */
+  width: 98%; /* Roztáhne se skoro přes celé (vypadá to líp než 100%) */
+  max-width: 100%; /* Povolí roztažení i na velkých monitorech */
+  border-radius: 0 0 20px 20px; /* Ztratí kulatost nahoře, dole zůstane jemná */
+  height: 75px; /* Trošku ho zvětšíme, aby to vypadalo stabilně */
+  background: rgba(255, 255, 255, 0.98);
+}
+/* Úprava kontejneru uvnitř navu */
+.nav-flex {
+  width: 100%;
+  padding: 0 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Logo v navbaru */
+.logo {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--primary);
+}
+.logo span {
+  color: var(--accent);
+  font-size: 0.8rem;
+  margin-left: 4px;
+  text-transform: uppercase;
+}
+
+/* Odkazy */
+.nav-links {
+  display: flex;
+  gap: 10px;
+  list-style: none;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--primary);
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 50px;
+  transition: 0.3s;
+  font-size: 0.95rem;
+}
+
+.nav-links a:hover {
+  background: rgba(249, 115, 22, 0.1); /* Jemný oranžový nádech při hoveru */
+  color: var(--accent);
+}
+
+/* Aktivní stránka */
+.nav-links a.active {
+  background: var(--accent);
+  color: white;
+}
+
+/* --- MODERNIZOVANÉ HERO --- */
+.hero {
+  /* Změna z marginu na padding pro prostor pod plovoucím navbarem */
+  padding-top: 100px;
+  min-height: 100vh; /* Změna na min-height pro lepší zobrazení na mobilech */
+  width: 100%;
+
+  /* Ponecháváme tvůj vizuál s černým gradientem */
+  background:
+    linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.4) 100%),
+    url("https://images.unsplash.com/photo-1610348725531-843dff563e2c?auto=format&fit=crop&w=1920&q=80");
+
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* Parallax efekt */
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: var(--white);
+
+  /* Box-sizing zajistí, že padding nezvětší šířku přes 100% */
+  box-sizing: border-box;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.hero-content {
+  background: rgba(255, 255, 255, 0.1); /* Průhledné bílé pozadí */
+  backdrop-filter: blur(10px); /* Rozmazání pozadí za textem (glass efekt) */
+  padding: 60px 40px;
+  border-radius: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  max-width: 900px;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+}
+
+.hero h1 {
+  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  font-weight: 900;
+  line-height: 1.1;
+  margin-bottom: 25px;
+  letter-spacing: -2px;
+}
+
+/* Zvýraznění slova v nadpisu */
+.hero h1 span {
+  color: var(--accent);
+  display: inline-block;
+}
+
+.hero p {
+  font-size: 1.25rem;
+  margin-bottom: 40px;
+  opacity: 0.9;
+  max-width: 650px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Animace pro Hero - jemné vplutí */
+.hero-content {
+  animation: heroFadeIn 1.2s ease-out;
+}
+
+@keyframes heroFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* Buttons */
+.btn {
+  padding: 12px 30px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 700;
+  transition: var(--transition);
+  display: inline-block;
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--white);
+}
+.btn-primary:hover {
+  background: #ea580c;
+  transform: scale(1.05);
+}
+.btn-secondary {
+  background: transparent;
+  color: var(--white);
+  border: 2px solid var(--white);
+  margin-left: 15px;
+}
+.btn-secondary:hover {
+  background: var(--white);
+  color: var(--primary);
+}
+
+/* Grid & Cards */
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Natvrdo 3 sloupce na PC */
+  gap: 30px;
+  padding: 80px 0;
+}
+.feature-card {
+  background: var(--white);
+  padding: 40px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  transition: var(--transition);
+  border-bottom: 4px solid var(--accent); /* Přidá oranžovou linku navrch */
+  position: relative;
+  overflow: hidden;
+}
+.feature-card:hover {
+  transform: translateY(-10px);
+}
+.feature-card .icon img {
+  filter: sepia(100%) hue-rotate(90deg) saturate(150%); /* Pokud jsou černé, tohle je obarví do zelena */
+  /* Nebo je stáhni přímo v barvě #1e4d2b */
+  margin-bottom: 20px;
+  transition: var(--transition);
+}
+
+.feature-card:hover .icon img {
+  transform: scale(1.1); /* Jemné zvětšení při najetí */
+}
+
+/* Stats Counter */
+.stats {
+  background: var(--primary);
+  color: white;
+  padding: 80px 0;
+  text-align: center;
+}
+.grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* Natvrdo 4 sloupce na PC */
+  gap: 40px;
+}
+.stat-item {
+  font-variant-numeric: tabular-nums;
+}
+.num {
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: var(--accent);
+  display: inline-block;
+}
+.num-suffix {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--accent);
+}
+
+/* Bento Grid */
+.bento-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr; /* Původní poměr stran */
+  gap: 20px;
+  padding: 80px 0;
+}
+.bento-item {
+  padding: 40px;
+  border-radius: 25px;
+  color: white;
+}
+.bento-main {
+  grid-row: span 2;
+  background: #2d3436;
+}
+.bg-green {
+  background: var(--primary-light);
+}
+.bg-orange {
+  background: var(--accent);
+}
+
+/* Reveal Animation */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease-out;
+}
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Footer */
+.main-footer {
+  background: var(--primary); /* Tmavě zelená jako základ */
+  color: var(--white);
+  padding: 60px 0 30px;
+  margin-top: 80px; /* Aby byl footer dál od obsahu */
+  border-top: 4px solid var(--accent); /* Oranžová linka nahoře pro propojení */
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.footer-logo {
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+
+.footer-logo span {
+  color: var(--accent);
+  font-size: 0.9rem;
+  margin-left: 5px;
+}
+
+.footer-nav {
+  display: flex;
+  gap: 30px;
+}
+
+.footer-nav a {
+  color: var(--white);
+  text-decoration: none;
+  opacity: 0.7;
+  transition: 0.3s;
+  font-weight: 600;
+}
+
+.footer-nav a:hover {
+  opacity: 1;
+  color: var(--accent);
+}
+
+.footer-divider {
+  width: 100%;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.1);
+  margin-bottom: 30px;
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+  opacity: 0.5;
+}
+
+/* Styling spoluprací */
+.partners {
+  padding: 80px 0;
+  background: transparent; /* Tady to bylo #f9fafb */
+  overflow: hidden;
+}
+
+.center-text {
+  text-align: center;
+  margin-bottom: 50px;
+  font-size: 2rem;
+  color: var(--primary);
+}
+
+.logo-slider {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: 20px 0;
+  background: transparent; /* Jistota */
+  box-shadow: none; /* Jistota, že tam není stín */
+}
+
+.logo-track {
+  display: flex;
+  width: calc(250px * 10); /* Šířka položky * počet položek */
+  animation: scrollSlider 30s linear infinite;
+}
+
+.partner-item {
+  width: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.partner-item span {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #9ca3af; /* Jemná šedá */
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: var(--transition);
+  white-space: nowrap;
+}
+
+.partner-item span:hover {
+  color: var(--accent);
+  transform: scale(1.1);
+}
+
+/* Animace nekonečného pohybu */
+@keyframes scrollSlider {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-250px * 5));
+  } /* Polovina počtu položek */
+}
+
+/* Přechodové stíny na okrajích slideru (vypadá to pak lépe do ztracena) */
+.logo-slider::before,
+.logo-slider::after {
+  content: "";
+  height: 100%;
+  position: absolute;
+  width: 150px;
+  z-index: 2;
+}
+
+.logo-slider::before {
+  left: 0;
+  top: 0;
+  background: linear-gradient(
+    to right,
+    #f9fafb 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+.logo-slider::after {
+  right: 0;
+  top: 0;
+  background: linear-gradient(to left, #f9fafb 0%, rgba(255, 255, 255, 0) 100%);
+}
+
+/* --- DOPLNĚK PRO SLUŽBY A HISTORII --- */
+
+/* 1. Stylování Novinek (ten box vpravo) */
+.news-card {
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  border: 1px solid #eee;
+}
+.news-header {
+  background: var(--accent);
+  color: white;
+  padding: 15px 25px;
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  text-align: center;
+}
+.news-body {
+  padding: 25px;
+}
+.news-item small {
+  color: var(--primary);
+  font-weight: 700;
+  display: block;
+  margin-bottom: 5px;
+}
+.news-item h4 {
+  margin-bottom: 5px;
+  color: var(--text-dark);
+}
+.news-item p {
+  font-size: 0.9rem;
+  color: #555;
+  line-height: 1.4;
+}
+
+/* --- ČASOVÁ OSA - DOKONALÉ SPOJENÍ --- */
+.timeline {
+  position: relative;
+  margin: 50px 0 50px 30px;
+}
+
+.timeline-item {
+  position: relative;
+  padding-left: 40px;
+  margin-bottom: 45px;
+}
+
+/* Čára: Propojuje puntíky bez mezer */
+.timeline-item::after {
+  content: "";
+  position: absolute;
+  left: 7px; /* Přesný střed puntíku */
+  top: 15px; /* Začíná ve středu aktuálního puntíku */
+  height: calc(100% + 45px); /* Protáhne se až do středu dalšího puntíku */
+  width: 2px;
+  background: var(--primary-light);
+  z-index: 1;
+}
+
+/* U posledního bodu čáru úplně zrušíme */
+.timeline-item:last-child::after {
+  display: none;
+}
+
+/* Puntíky */
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 8px; /* Vycentrování k textu roku */
+  width: 14px;
+  height: 14px;
+  background: var(--accent);
+  border: 2px solid var(--white);
+  border-radius: 50%;
+  z-index: 2; /* Puntík musí krýt čáru */
+  box-shadow: 0 0 0 2px var(--primary-light);
+}
+
+.timeline-item .year {
+  font-weight: 800;
+  color: var(--primary);
+  font-size: 1.3rem;
+  line-height: 1.2;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.timeline-item .content {
+  background: var(--white);
+  padding: 15px 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+  border: 1px solid #f0f0f0;
+}
+
+/* Základní stav - položka je neviditelná a posunutá dolů */
+.timeline-item.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease-out;
+}
+
+/* Stav po aktivaci (skriptem) */
+.timeline-item.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Postupné zpoždění pro jednotlivé položky */
+.timeline-item:nth-child(1) {
+  transition-delay: 0.05s;
+}
+.timeline-item:nth-child(2) {
+  transition-delay: 0.15s;
+}
+.timeline-item:nth-child(3) {
+  transition-delay: 0.25s;
+}
+.timeline-item:nth-child(4) {
+  transition-delay: 0.35s;
+}
+.timeline-item:nth-child(5) {
+  transition-delay: 0.45s;
+}
+/* Pokud máš víc položek, můžeš přidat další nebo použít univerzálnější krok */
+/* 3. Pomocné třídy pro rozvržení */
+.py-60 {
+  padding-top: 60px;
+}
+.mt-20 {
+  margin-top: 20px;
+}
+.mt-40 {
+  margin-top: 40px;
+}
+
+.info-box {
+  background: #fff;
+  padding: 25px;
+  border-radius: 15px;
+  border-left: 5px solid var(--primary);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.custom-list {
+  list-style: none;
+  margin-top: 15px;
+}
+.custom-list li {
+  position: relative;
+  padding-left: 25px;
+  margin-bottom: 10px;
+}
+.custom-list li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-weight: bold;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr; /* Levý sloupec s textem je širší */
+  gap: 40px;
+  align-items: start;
+}
+
+@media (max-width: 992px) {
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --- FINÁLNÍ DOPLŇKY PRO ÚHLEDNOST --- */
+
+/* 1. News Banner (ten úhledný pruh s tečkou) */
+.news-banner {
+  width: 100%; /* Vždy na celou šířku kontejneru */
+  max-width: 1200px; /* Nebo tvá max šířka webu */
+  margin-left: auto; /* Vycentrování */
+  margin-right: auto;
+
+  background: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 35px;
+  border-radius: 100px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+
+  /* Odsazení, které jsi chtěl */
+  margin-top: 60px;
+  margin-bottom: 20px;
+
+  box-sizing: border-box; /* Aby padding nezvětšoval šířku */
+}
+.news-label {
+  background: var(--primary);
+  color: white;
+  padding: 8px 18px;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+.dot {
+  height: 8px;
+  width: 8px;
+  background-color: var(--accent);
+  border-radius: 50%;
+  margin-right: 10px;
+  animation: pulse 1.5s infinite;
+}
+
+/* 2. Vylepšení Info Boxu (aby seznamy nebyly rozlítané) */
+.info-box.shadow-accent {
+  border-top: 5px solid var(--accent);
+  border-left: none; /* Přepíšeme tu původní zelenou linku vlevo */
+}
+.custom-list li {
+  padding: 10px 0 10px 30px;
+  border-bottom: 1px solid #f3f4f6;
+}
+.custom-list li:last-child {
+  border-bottom: none;
+}
+
+/* 3. Animace pro tečku */
+@keyframes pulse {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 10px rgba(249, 115, 22, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(249, 115, 22, 0);
+  }
+}
+
+.clean-header {
+  /* 160px nahoře vytvoří bezpečný prostor pod plovoucím navbarem */
+  padding: 160px 0 60px 0;
+  background: var(--bg-light);
+  width: 100%;
+}
+
+/* Container zajistí, že text nezačne na úplném kraji monitoru, ale v linii s webem */
+.clean-header .container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Zarovná vše (sub-title, h1, line) doleva */
+  text-align: left;
+}
+
+.sub-title {
+  color: var(--accent);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 0.9rem;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.clean-header h1 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 800;
+  color: var(--primary);
+  line-height: 1.1;
+  margin: 0;
+  max-width: 850px; /* Aby se nadpis nelámal moc brzy */
+}
+
+.header-line {
+  width: 60px;
+  height: 4px;
+  background: var(--accent);
+  margin-top: 25px;
+  border-radius: 2px;
+  /* margin-left: 0 zajistí, že linka zůstane vlevo pod textem */
+  margin-left: 0;
+}
+
+/* --- KONTAKTY A FORMULÁŘE --- */
+.hours-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.hours-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px dashed #ddd;
+}
+.hours-item strong {
+  color: var(--primary);
+}
+
+.notice {
+  background: #fff4ed;
+  padding: 15px;
+  border-radius: 10px;
+  border-left: 4px solid var(--accent);
+  font-size: 0.9rem;
+}
+
+.contact-card {
+  background: var(--primary);
+  color: white;
+  padding: 40px;
+  border-radius: 25px;
+}
+.contact-card h3 {
+  margin-bottom: 25px;
+  color: var(--accent);
+}
+.contact-item {
+  margin-bottom: 20px;
+}
+.contact-item strong {
+  display: block;
+  font-size: 0.8rem;
+  opacity: 0.7;
+  text-transform: uppercase;
+}
+.contact-item p,
+.contact-item a {
+  font-size: 1.2rem;
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* Formulář */
+
+.form-container {
+  background: var(--white);
+  padding: 40px;
+  border-radius: 25px;
+  /* Tenhle stín a border udělají ten "box" efekt */
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.06);
+  border: 1px solid #edf2f7;
+}
+
+.form-container h4,
+.form-container h3 {
+  margin-bottom: 20px;
+  color: var(--primary);
+  font-weight: 800;
+}
+.form-container input,
+.form-container textarea {
+  width: 100%;
+  padding: 15px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  font-family: inherit;
+}
+.form-container input:focus,
+.form-container textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+.w-100 {
+  width: 100%;
+  border: none;
+  cursor: pointer;
+}
+
+.map-wrapper {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  overflow: hidden;
+  margin-bottom: 30px;
+  margin-top: 20px;
+}
+
+/* Pomocné třídy pro odsazení */
+.mt-40 {
+  margin-top: 40px !important;
+}
+.mb-40 {
+  margin-bottom: 40px !important;
+}
+
+/* Pokud chceš, aby i nadpisy v boxech měly víc místa od obsahu */
+.info-box h2,
+.info-box h3 {
+  margin-bottom: 25px; /* Trochu víc místa pod nadpisem v boxu */
+}
+
+hr {
+  border: none;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(0, 0, 0, 0.3),
+    transparent
+  );
+
+  /* Tohle je to klíčové: */
+  width: 90%; /* Aby nebyla úplně nalepená na kraje u mobilů */
+  max-width: 1200px; /* Musí být stejné jako šířka tvého .containeru */
+  margin: 40px auto; /* 'auto' ji vycentruje na střed */
+}
+
+/* Copyright 2026 - [Radek Minol] - Vytvořeno pro MOREKO s.r.o. jako autorský návrh */
+/* Neautorizované kopírování tohoto kódu je porušením autorských práv. */
+
+/* Oprava pro velmi malé telefony (např. iPhone SE) */
+@media (max-width: 480px) {
+  .hero h1 {
+    font-size: 1.8rem;
+  }
+  .num {
+    font-size: 2.5rem;
+  }
+}
+
+/* ZÁKLADNÍ NASTAVENÍ BURGERU (na PC neviditelný) */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  cursor: pointer;
+  z-index: 2001; /* Musí být VŽDY nad menu */
+  padding: 10px;
+}
+
+.hamburger span {
+  width: 30px;
+  height: 3px;
+  background: var(--primary);
+  border-radius: 5px;
+  transition: 0.3s ease;
+}
+
+/* ============================================================
+   KOMPLETNÍ RESPONZIVNÍ DESIGN (MOBILY A TABLETY)
+   ============================================================ */
+@media (max-width: 768px) {
+  /* 1. NAVBAR - Fixní bílá lišta bez mezer */
+  .navbar,
+  .navbar.sticky-nav {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    transform: none !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 80px !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+    background: #ffffff !important;
+    display: flex !important;
+    align-items: center !important;
+    z-index: 9999 !important;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1) !important;
+    transition: none !important;
+  }
+
+  /* 2. KONTEJNER NAVIGACE - Logo vlevo, Burger vpravo */
+  .nav-flex {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 20px !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+  }
+
+  /* 3. BURGER MENU - Ikona a animace na křížek */
+  .hamburger {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    width: 30px !important;
+    height: 22px !important;
+    cursor: pointer !important;
+    z-index: 10001 !important; /* Musí být nad vysunutým menu */
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+  }
+
+  .hamburger span {
+    display: block !important;
+    width: 100% !important;
+    height: 3px !important;
+    background-color: var(--primary) !important;
+    border-radius: 2px !important;
+    transition:
+      transform 0.3s ease,
+      opacity 0.3s ease !important;
+  }
+
+  /* Transformace na křížek při aktivaci */
+  .hamburger.active span:nth-child(1) {
+    transform: translateY(9.5px) rotate(45deg) !important;
+  }
+  .hamburger.active span:nth-child(2) {
+    opacity: 0 !important;
+  }
+  .hamburger.active span:nth-child(3) {
+    transform: translateY(-9.5px) rotate(-45deg) !important;
+  }
+
+  /* 4. VYSOUVACÍ MENU - Bílá plocha přes celý displej */
+  .nav-links {
+    display: none !important; /* V základu skryté */
+    position: fixed !important;
+    top: 80px !important; /* Začíná hned pod navbarem */
+    left: 0 !important;
+    width: 100% !important;
+    height: calc(100vh - 80px) !important;
+    background: #ffffff !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 35px !important;
+    z-index: 10000 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    transition: none !important;
+  }
+
+  .nav-links.mobile-active {
+    display: flex !important; /* Zobrazení při kliku */
+  }
+
+  .nav-links li {
+    margin: 0 !important;
+  }
+
+  .nav-links a {
+    font-size: 1.6rem !important;
+    font-weight: 700 !important;
+    color: var(--primary) !important;
+    text-decoration: none !important;
+  }
+
+  /* Styl pro aktivní odkaz v MOBILNÍM menu */
+  .nav-links a.active {
+    background-color: var(
+      --accent
+    ) !important; /* Oranžová z tvých proměnných */
+    color: #ffffff !important; /* Bílá pro kontrast */
+    padding: 12px 30px !important; /* Trochu prostor kolem textu */
+    border-radius: 50px !important; /* Zakulacení jako u tlačítek */
+    font-weight: 800 !important; /* Extra tučné */
+    box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3) !important; /* Jemná záře */
+  }
+
+  .nav-links a:not(.active) {
+    color: var(--primary) !important;
+    opacity: 0.7;
+  }
+
+  /* 5. HERO SEKCE - Úprava textů pod sebou */
+  .hero {
+    padding-top: 100px !important;
+    min-height: auto !important;
+    padding-bottom: 60px !important;
+  }
+
+  .hero-content {
+    padding: 30px 20px !important;
+    margin: 0 10px !important;
+    border-radius: 20px !important;
+  }
+
+  .hero h1 {
+    font-size: 2.2rem !important;
+  }
+  .hero p {
+    font-size: 1rem !important;
+  }
+
+  .btn-secondary {
+    margin-left: 0 !important;
+    margin-top: 15px !important;
+    display: block !important;
+  }
+  .btn-primary {
+    display: block !important;
+  }
+
+  /* 6. GRID SYSTÉM - Všechny sloupce pod sebe */
+  .grid-2,
+  .grid-3,
+  .grid-4,
+  .bento-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 20px !important;
+    padding: 20px 0 !important;
+  }
+
+  .bento-main {
+    grid-row: auto !important;
+  }
+
+  /* 7. OSTATNÍ PRVKY */
+  .news-banner {
+    flex-direction: column !important;
+    border-radius: 15px !important;
+    padding: 20px !important;
+    gap: 15px !important;
+  }
+
+  .clean-header {
+    padding: 120px 0 40px 0 !important;
+    text-align: center !important; /* Vycentruje text h1 i sub-title */
+  }
+
+  .clean-header .container {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important; /* Vycentruje vnitřní prvky (linku, boxy) */
+    justify-content: center !important;
+  }
+
+  .clean-header h1 {
+    text-align: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    width: 100% !important; /* Aby neměl omezenou šířku a mohl se centrovat */
+  }
+
+  .sub-title {
+    text-align: center !important;
+    display: block !important;
+    width: 100% !important;
+  }
+  .header-line {
+    margin: 20px auto 0 auto !important; /* 'auto' na stranách vycentruje tu oranžovou linku */
+  }
+
+  .footer-content,
+  .footer-bottom {
+    flex-direction: column !important;
+    text-align: center !important;
+    gap: 20px !important;
+  }
+}
+
+/* Oprava pro velmi malé telefony */
+@media (max-width: 480px) {
+  .hero h1 {
+    font-size: 1.8rem !important;
+  }
+  .logo {
+    font-size: 1.2rem !important;
+  }
+}

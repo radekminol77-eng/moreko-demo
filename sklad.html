@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="cs">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sklad a Kontakt | MOREKO s.r.o.</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <nav class="navbar" id="navbar">
+      <div class="container nav-flex">
+        <div class="logo">MOREKO<span>s.r.o.</span></div>
+
+        <ul class="nav-links" id="nav-links">
+          <li><a href="index.html">Úvod</a></li>
+          <li><a href="sluzby.html">Služby a Historie</a></li>
+          <li><a href="sklad.html" class="active">Sklad a Kontakt</a></li>
+        </ul>
+
+        <div class="hamburger" id="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </nav>
+
+    <header class="clean-header">
+      <div class="container">
+        <span class="sub-title">Najdete nás v Šumperku</span>
+        <h1>Sklad a kontakt</h1>
+        <div class="header-line"></div>
+      </div>
+    </header>
+
+    <main class="container py-60">
+      <div class="grid-2">
+        <div class="reveal">
+          <section class="info-box mb-40">
+            <h2 class="mb-20">Provoz skladu</h2>
+            <div class="hours-grid">
+              <div class="hours-item">
+                <strong>Firmy a velkoobchod</strong>
+                <span>Po – Pá: 5:00 – 13:00</span>
+              </div>
+              <div class="hours-item">
+                <strong>Ostatní zákazníci</strong>
+                <span>Po – Pá: 8:00 – 13:00</span>
+              </div>
+            </div>
+            <div class="notice mt-20">
+              <p>
+                ⚠️ <strong>Důležité info:</strong> Prodej pro veřejnost je
+                omezen na <strong>celá balení</strong>. Platba pouze v
+                <strong>hotovosti</strong> (karty nepřijímáme).
+              </p>
+            </div>
+          </section>
+
+          <section class="info-box shadow-accent">
+            <h3 class="mb-20">Nabídka baleného zboží</h3>
+            <ul class="custom-list">
+              <li>Brambory (sadbové i konzumní)</li>
+              <li>Zelí (krouhané i ke krouhání)</li>
+              <li>Cibule, česnek a jablka</li>
+            </ul>
+            <p class="text-small mt-20">
+              Ceny jsou uváděny bez DPH. Kompletní ceník je k dispozici přímo na
+              skladě.
+            </p>
+          </section>
+        </div>
+
+        <div class="reveal">
+          <div class="contact-card">
+            <h3>Kontaktní údaje</h3>
+            <div class="contact-item">
+              <strong>Sídlo a sklad:</strong>
+              <p>Reissova 4, 787 01 Šumperk</p>
+            </div>
+            <div class="contact-item">
+              <strong>Telefon sklad:</strong>
+              <a href="tel:+420583214685">583 214 685</a>
+            </div>
+            <div class="contact-item">
+              <strong>Mobil (i víkendy):</strong>
+              <a href="tel:+420777094940">777 094 940</a>
+            </div>
+            <div class="contact-item">
+              <strong>Email:</strong>
+              <a href="mailto:moreko@seznam.cz">moreko@seznam.cz</a>
+            </div>
+          </div>
+
+          <div class="form-container mt-40">
+            <h4>Napište nám</h4>
+            <form action="#">
+              <input type="text" placeholder="Jméno a příjmení *" required />
+              <div
+                class="grid-2"
+                style="gap: 10px; grid-template-columns: 1fr 1fr"
+              >
+                <input type="tel" placeholder="Telefon *" required />
+                <input type="email" placeholder="E-mail *" required />
+              </div>
+              <textarea
+                placeholder="Vaše zpráva nebo dotaz k odrůdám... *"
+                rows="4"
+                required
+              ></textarea>
+              <button type="submit" class="btn btn-primary w-100">
+                Odeslat dotaz
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <section class="pb-60 reveal">
+        <div class="news-banner">
+          <div class="news-label">
+            <span class="dot"></span> Aktuálně ze skladu
+          </div>
+          <div class="news-ticker">
+            <div class="ticker-item">
+              <strong>5. 3. 2026</strong> | Začal prodej sadbových brambor a
+              sazečky. Odrůdy skladem.
+            </div>
+          </div>
+          <a
+            href="sklad.html"
+            class="btn btn-primary"
+            style="padding: 10px 25px; font-size: 0.9rem"
+            >Kontakt na sklad</a
+          >
+        </div>
+      </section>
+
+      <hr/>
+
+
+      </section>
+      <section class="py-60 reveal">
+        <h2 class="mb-20">Kde nás najdete</h2>
+        <div class="map-wrapper">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2551.488667530511!2d16.983713676883!3d50.96101195107086!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4711f594539655f5%3A0x6336e8df81f7f02b!2sReissova%204%2C%20787%2001%20%C5%A0umperk!5e0!3m2!1scs!2scz!4v1709800000000!5m2!1scs!2scz"
+            width="100%"
+            height="450"
+            style="border: 0; border-radius: 20px"
+            allowfullscreen=""
+            loading="lazy"
+          ></iframe>
+        </div>
+      </section>
+    </main>
+
+    <footer class="main-footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-logo">MOREKO<span>s.r.o.</span></div>
+          <nav class="footer-nav">
+            <a href="index.html">Úvod</a>
+            <a href="sluzby.html">Služby a Historie</a>
+            <a href="sklad.html">Sklad a Kontakt</a>
+          </nav>
+        </div>
+
+        <div class="footer-divider"></div>
+
+        <div class="footer-bottom">
+          <p>© 2026 MOREKO s.r.o. | Čerstvost z Šumperka</p>
+          <div class="footer-credit">Design & Development by <strong>Radek Minol</strong></div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
+
+<!-- Copyright 2026 - Radek Minol - Vytvořeno pro MOREKO s.r.o. jako autorský návrh */
+/* Neautorizované kopírování tohoto kódu je porušením autorských práv. -->
